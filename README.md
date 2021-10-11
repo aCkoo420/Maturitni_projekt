@@ -12,4 +12,4 @@ Vytvoreno v Godotu -
 Vytvoreno v Pygame -
   https://en.wikipedia.org/wiki/Frets_on_Fire
   https://store.steampowered.com/app/27400/Dangerous_High_School_Girls_in_Trouble/
-  https://store.steampowered.com/app/1400930/Save_the_Date/
+
