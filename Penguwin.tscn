@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://penguwin.png" type="Texture" id=1]
+[ext_resource path="res://Penguwin.cs" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 17.0748
+height = 32.7653
+
+[sub_resource type="Animation" id=2]
+resource_name = "Chuze"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 70, 70 ), Rect2( 70, 0, 70, 70 ), Rect2( 0, 0, 70, 70 ), Rect2( 70, 0, 70, 70 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Skok"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 140, 0, 70, 70 ), Rect2( 70, 0, 70, 70 ), Rect2( 70, 0, 70, 70 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "stojici"
+
+[node name="Penguwin" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 70, 70 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.98422, 0.793694 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "stojici"
+anims/Chuze = SubResource( 2 )
+anims/Skok = SubResource( 3 )
+anims/stojici = SubResource( 4 )
