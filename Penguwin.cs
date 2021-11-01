@@ -6,10 +6,13 @@ public class Penguwin : KinematicBody2D
 	Vector2 smer;
 	float rychlostPohybu = 500;
 
-	float gravitace = 90;
+	//int score = 0 # raw y distance traveled
+	//int actual_score = 0 # y distance divided by 10
+
+	float gravitace = 100;
 	float maxRychlostPadu = 1000;
 	float minRychlostPadu = 5;
-	float silaSkoku = 1500;
+	float silaSkoku = 1000;
 	bool skocil = false;
 
 	Sprite sprite;
@@ -32,6 +35,15 @@ public class Penguwin : KinematicBody2D
 		{
 			smer.y = minRychlostPadu;
 		}
+
+		/*if(position.y < score) { 
+			score = position.y;
+			printf('new highscore: ' + str(score / 10));
+			actual_score = score / 10;
+			camera.position.y = position.y;
+			}
+		*/
+		
 		//Pohyb tucnacka
 		smer.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
 		smer.x *= rychlostPohybu;
@@ -71,9 +83,23 @@ public class Penguwin : KinematicBody2D
 		}
 
 		smer = MoveAndSlide(smer, Vector2.Up);
-
+		
+		
 
 	}
+	public void GoodJump()
+	{
+		// ...
+		// We connect the mob to the score label to update the score upon squashing one.
+		smer.Vector2(nameof(Mob.Squashed), GetNode<ScoreLabel>("UserInterface/ScoreLabel"), nameof(ScoreLabel.OnMobSquashed));
+	}
+
+	/*public void OnMobTimerTimeout()
+	{
+		// ...
+		// We connect the mob to the score label to update the score upon squashing one.
+		mob.Connect(nameof(Mob.Squashed), GetNode<ScoreLabel>("UserInterface/ScoreLabel"), nameof(ScoreLabel.OnMobSquashed));
+	}*/
 
 }
 
