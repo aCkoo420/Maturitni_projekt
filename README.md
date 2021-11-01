@@ -4,4 +4,6 @@
 
 17.10 - Pohyb postavicky, gravitace, jednoducha tilemap.
 
+Font použitý https://www.1001fonts.com/dpcomic-font.html
+
 
