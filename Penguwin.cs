@@ -4,7 +4,7 @@ using System;
 public class Penguwin : KinematicBody2D
 {
 	Vector2 smer;
-	float rychlostPohybu = 500;
+	float rychlostPohybu = 600;
 
 	//int score = 0 # raw y distance traveled
 	//int actual_score = 0 # y distance divided by 10
@@ -14,17 +14,31 @@ public class Penguwin : KinematicBody2D
 	float minRychlostPadu = 5;
 	float silaSkoku = 1000;
 	bool skocil = false;
+	int score = 0;
+
+	public Label scoreText;
 
 	Sprite sprite;
 	AnimationPlayer animacePengwina; 
 	public override void _Ready()
 	{
+		scoreText = (Label)GetNode("Label");
+		scoreText.Text = "0";
 		sprite = (Sprite)GetNode("Sprite");
 		animacePengwina = (AnimationPlayer)GetNode("AnimationPlayer");
 	}
-
+	private void _on_Sprite_body_entered(object body)
+	{
+		score += 1;
+		scoreText.Text = score.ToString();
+	}
+	private void _on_Area2D_body_entered(object body)
+	{
+   		QueueFree();
+	}
 	public override void _PhysicsProcess(float delta)
 	{
+
 		//Gravitace
 		smer.y += gravitace;
 		if (smer.y > maxRychlostPadu)
@@ -36,26 +50,23 @@ public class Penguwin : KinematicBody2D
 			smer.y = minRychlostPadu;
 		}
 
-		/*if(position.y < score) { 
-			score = position.y;
-			printf('new highscore: ' + str(score / 10));
-			actual_score = score / 10;
-			camera.position.y = position.y;
-			}
-		*/
 		
+
 		//Pohyb tucnacka
 		smer.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
 		smer.x *= rychlostPohybu;
 
+		//scoreText.Text = 
+
 		//Skok tucniaka
-		
+
 		if (IsOnFloor() && Input.IsActionJustPressed("jump"))
 		{
 			skocil = true;
 			smer.y = -silaSkoku;
-		}else
-		if(skocil && Input.IsActionJustPressed("jump"))
+		}
+		else
+		if (skocil && Input.IsActionJustPressed("jump"))
 		{
 			skocil = false;
 			smer.y = -silaSkoku;
@@ -65,7 +76,8 @@ public class Penguwin : KinematicBody2D
 		if (smer.x > 0)
 		{
 			sprite.FlipH = false;
-		}else if(smer.x<0)
+		}
+		else if (smer.x < 0)
 		{
 			sprite.FlipH = true;
 		}
@@ -73,7 +85,8 @@ public class Penguwin : KinematicBody2D
 		if (IsOnFloor() && smer.x == 0)
 		{
 			animacePengwina.Play("stojici");
-		}else if(IsOnFloor() && smer.x != 0)
+		}
+		else if (IsOnFloor() && smer.x != 0)
 		{
 			animacePengwina.Play("Chuze");
 		}
@@ -83,23 +96,14 @@ public class Penguwin : KinematicBody2D
 		}
 
 		smer = MoveAndSlide(smer, Vector2.Up);
-		
+
 		
 
 	}
-	public void GoodJump()
-	{
-		// ...
-		// We connect the mob to the score label to update the score upon squashing one.
-		smer.Vector2(nameof(Mob.Squashed), GetNode<ScoreLabel>("UserInterface/ScoreLabel"), nameof(ScoreLabel.OnMobSquashed));
-	}
 
-	/*public void OnMobTimerTimeout()
-	{
-		// ...
-		// We connect the mob to the score label to update the score upon squashing one.
-		mob.Connect(nameof(Mob.Squashed), GetNode<ScoreLabel>("UserInterface/ScoreLabel"), nameof(ScoreLabel.OnMobSquashed));
-	}*/
 
 }
+
+
+
 
