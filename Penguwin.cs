@@ -5,6 +5,7 @@ public class Penguwin : KinematicBody2D
 {
 	Vector2 smer;
 	float rychlostPohybu = 600;
+	
 
 	//int score = 0 # raw y distance traveled
 	//int actual_score = 0 # y distance divided by 10
@@ -35,10 +36,12 @@ public class Penguwin : KinematicBody2D
 	private void _on_Area2D_body_entered(object body)
 	{
    		QueueFree();
+		GetTree().ReloadCurrentScene();
 	}
 	public override void _PhysicsProcess(float delta)
 	{
 
+		
 		//Gravitace
 		smer.y += gravitace;
 		if (smer.y > maxRychlostPadu)

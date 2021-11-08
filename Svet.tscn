@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Penguwin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
@@ -9,7 +9,15 @@
 [ext_resource path="res://Reset.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 34
+size = 36
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [node name="Svet" type="Node2D"]
@@ -34,14 +42,25 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="Label" type="Label" parent="Penguwin"]
-margin_left = 638.556
+margin_left = 643.601
 margin_top = -153.969
-margin_right = 700.556
+margin_right = 705.601
 margin_bottom = -111.969
 custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skore" type="Label" parent="Penguwin"]
+margin_left = 564.557
+margin_top = -152.287
+margin_right = 651.557
+margin_bottom = -119.287
+custom_fonts/font = SubResource( 2 )
+text = "Skore:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,7 +95,7 @@ position = Vector2( 1605.49, 225.78 )
 position = Vector2( 1991.03, 349.253 )
 
 [node name="Area2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 364, -4 )
+position = Vector2( 327.23, -71.8823 )
 
 [connection signal="input_event" from="Penguwin" to="Sprite" method="_on_Penguwin_input_event"]
 [connection signal="body_entered" from="Sprite" to="." method="_on_Sprite_body_entered"]
