@@ -4,12 +4,12 @@ using System;
 public class Penguwin : KinematicBody2D
 {
 	Vector2 smer;
-	float rychlostPohybu = 600;
+	float rychlostPohybu = 550;
 
 	//int score = 0 # raw y distance traveled
 	//int actual_score = 0 # y distance divided by 10
 
-	float gravitace = 100;
+	float gravitace = 110;
 	float maxRychlostPadu = 1000;
 	float minRychlostPadu = 5;
 	float silaSkoku = 1000;
