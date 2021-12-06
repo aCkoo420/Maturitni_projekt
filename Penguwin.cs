@@ -72,7 +72,12 @@ public class Penguwin : KinematicBody2D
 			skocil = false;
 			smer.y = -silaSkoku;
 		}
-
+	
+		if(IsOnFloor() && Input.IsActionJustPressed("move_right") || Input.IsActionJustPressed("move_left"))
+		{
+			rychlostPohybu+=5;
+			
+		}
 		//Otaceni tucnacka
 		if (smer.x > 0)
 		{

@@ -29,12 +29,11 @@ tile_data = PoolIntArray( 131115, 0, 0, 131116, 0, 0, 131117, 0, 0, 131118, 0, 0
 position = Vector2( 54.3022, 137.227 )
 
 [node name="Camera2D" type="Camera2D" parent="Penguwin"]
-position = Vector2( -319.679, -157.545 )
+position = Vector2( -438.887, 536.319 )
 anchor_mode = 0
 rotating = true
 current = true
-limit_bottom = 588
-limit_smoothed = true
+limit_bottom = 560
 offset_h = 0.3
 drag_margin_left = 0.0
 drag_margin_top = 0.0
@@ -66,25 +65,6 @@ text = "Skore:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
-modulate = Color( 0.972549, 0.886275, 0.662745, 1 )
-show_behind_parent = true
-position = Vector2( 506.046, 328.825 )
-scale = Vector2( 21.2781, 13.2652 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 64, 64 )
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground"]
-light_mask = 31
-position = Vector2( 511.159, 835.349 )
-scale = Vector2( 2.7299, 1.04688 )
-texture = ExtResource( 9 )
-normal_map = ExtResource( 8 )
-region_rect = Rect2( -0.743, 0, 0, 0 )
 
 [node name="Sprite" parent="." instance=ExtResource( 6 )]
 position = Vector2( 359.15, 361.109 )
@@ -120,10 +100,39 @@ position = Vector2( 2924.43, 102.029 )
 position = Vector2( -646.581, 659.013 )
 
 [node name="Area2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1890.9, -108.417 )
+position = Vector2( 1890.9, -127.869 )
 
 [node name="Area2D2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -2130.87, 34.8166 )
+position = Vector2( -4889.01, 14.6351 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 1, 0 )
+transform = Transform2D( 1, 0, 0, 1, 1, 0 )
+follow_viewport_scale = 0.001
+scroll_offset = Vector2( 0, 200 )
+scroll_base_offset = Vector2( 0, 200 )
+scroll_base_scale = Vector2( 1, 200 )
+scroll_limit_begin = Vector2( 0, 200 )
+scroll_limit_end = Vector2( 0, 200 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
+modulate = Color( 0.972549, 0.886275, 0.662745, 1 )
+show_behind_parent = true
+position = Vector2( 684.007, 299.359 )
+rotation = -3.14159
+scale = Vector2( 21.2781, 13.2652 )
+z_as_relative = false
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground"]
+self_modulate = Color( 0.364706, 0.729412, 0.972549, 1 )
+light_mask = 31
+position = Vector2( 696.395, 804.083 )
+scale = Vector2( 2.7299, 1.04688 )
+z_as_relative = false
+texture = ExtResource( 9 )
+normal_map = ExtResource( 8 )
 
 [connection signal="input_event" from="Penguwin" to="Sprite" method="_on_Penguwin_input_event"]
 [connection signal="body_entered" from="Sprite" to="." method="_on_Sprite_body_entered"]
