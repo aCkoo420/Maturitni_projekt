@@ -13,16 +13,35 @@ public class Svet : Node2D
 
 	public override void _Ready()
 	{
-		
-	}
-
 	
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	}
+	
+	private void _on_Button_pressed()
+	{
+	GD.Print("idzem");
+	}
+		
+		private void _on_Continue_pressed()
+	{
+		GetTree().Paused = false;
+		GetNode<Button>("Quit").Hide();
+		GetNode<Button>("Continue").Hide();
+	}
+  
+ /* public override void _Process(float delta)
+  {
+	 
+ 	}*/
 }
+
+
+
+
+
+
+
+
+
 
 
 

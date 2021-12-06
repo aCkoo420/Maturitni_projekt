@@ -8,7 +8,7 @@ public class Penguwin : KinematicBody2D
 
 	//int score = 0 # raw y distance traveled
 	//int actual_score = 0 # y distance divided by 10
-
+	
 	float gravitace = 100;
 	float maxRychlostPadu = 1000;
 	float minRychlostPadu = 5;
@@ -26,6 +26,7 @@ public class Penguwin : KinematicBody2D
 		scoreText.Text = "0";
 		sprite = (Sprite)GetNode("Sprite");
 		animacePengwina = (AnimationPlayer)GetNode("AnimationPlayer");
+		
 	}
 	private void _on_Sprite_body_entered(object body)
 	{
@@ -37,9 +38,25 @@ public class Penguwin : KinematicBody2D
    		GetTree().ReloadCurrentScene();
 	}
 	
+	private void _on_Continue_pressed()
+	{
+	GetTree().Paused=false;
+	GetNode<Button>("Quit").Hide();
+	GetNode<Button>("Continue").Hide();
+	}
+	
+	private void _on_Quit_pressed()
+	{
+	 GetTree().Quit();
+	}
+
+
+	
+	
+	
 	public override void _PhysicsProcess(float delta)
 	{
-
+	
 		//Gravitace
 		smer.y += gravitace;
 		if (smer.y > maxRychlostPadu)
@@ -57,7 +74,7 @@ public class Penguwin : KinematicBody2D
 		smer.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
 		smer.x *= rychlostPohybu;
 
-		//scoreText.Text = 
+		
 
 		//Skok tucniaka
 
@@ -100,15 +117,31 @@ public class Penguwin : KinematicBody2D
 		{
 			animacePengwina.Play("Skok");
 		}
+		if(Input.IsActionPressed("ui_cancel") )
+		{
+			GetTree().Paused=true;
+			GetNode<Button>("Quit").Show();
+			GetNode<Button>("Continue").Show();
+			
+		}
+		
+		
 
 		smer = MoveAndSlide(smer, Vector2.Up);
 
 		
 
 	}
-
+	
+	
 
 }
+
+
+
+
+
+
 
 
 

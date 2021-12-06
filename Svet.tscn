@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Penguwin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
@@ -19,6 +19,18 @@ font_data = ExtResource( 4 )
 size = 32
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 15
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
 [node name="Svet" type="Node2D"]
 script = ExtResource( 5 )
 
@@ -33,7 +45,9 @@ position = Vector2( -438.887, 536.319 )
 anchor_mode = 0
 rotating = true
 current = true
-limit_bottom = 560
+limit_top = -1000
+limit_right = 10000606
+limit_bottom = 559
 offset_h = 0.3
 drag_margin_left = 0.0
 drag_margin_top = 0.0
@@ -62,6 +76,58 @@ margin_right = 56.9066
 margin_bottom = -45.7203
 custom_fonts/font = SubResource( 2 )
 text = "Skore:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Penguwin"]
+pause_mode = 2
+visible = false
+margin_left = 37.0
+margin_top = 9.0
+margin_right = 144.0
+margin_bottom = 88.0
+rect_scale = Vector2( 2.33004, 1.45862 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Penguwin/Quit"]
+margin_left = -16.1471
+margin_top = -10.7574
+margin_right = 50.8529
+margin_bottom = 14.2427
+rect_scale = Vector2( 2.12165, 4.3996 )
+custom_fonts/font = SubResource( 3 )
+text = "KONEC"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="Penguwin"]
+pause_mode = 2
+visible = false
+margin_left = -262.0
+margin_top = 6.0
+margin_right = -147.0
+margin_bottom = 86.0
+rect_scale = Vector2( 2.33004, 1.45862 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Penguwin/Continue"]
+margin_left = 10.227
+margin_top = 7.35292
+margin_right = 87.227
+margin_bottom = 24.3529
+rect_scale = Vector2( 1.28046, 4.3996 )
+custom_fonts/font = SubResource( 4 )
+text = "POKRACOVAT"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,6 +201,8 @@ texture = ExtResource( 9 )
 normal_map = ExtResource( 8 )
 
 [connection signal="input_event" from="Penguwin" to="Sprite" method="_on_Penguwin_input_event"]
+[connection signal="pressed" from="Penguwin/Quit" to="Penguwin" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Penguwin/Continue" to="Penguwin" method="_on_Continue_pressed"]
 [connection signal="body_entered" from="Sprite" to="." method="_on_Sprite_body_entered"]
 [connection signal="body_entered" from="Sprite" to="Penguwin" method="_on_Sprite_body_entered"]
 [connection signal="body_entered" from="Sprite2" to="." method="_on_Sprite_body_entered"]
