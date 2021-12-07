@@ -41,7 +41,7 @@ tile_data = PoolIntArray( 131115, 0, 0, 131116, 0, 0, 131117, 0, 0, 131118, 0, 0
 position = Vector2( 54.3022, 137.227 )
 
 [node name="Camera2D" type="Camera2D" parent="Penguwin"]
-position = Vector2( -438.887, 536.319 )
+position = Vector2( -477.624, 547.325 )
 anchor_mode = 0
 rotating = true
 current = true
@@ -83,6 +83,7 @@ __meta__ = {
 [node name="Quit" type="Button" parent="Penguwin"]
 pause_mode = 2
 visible = false
+modulate = Color( 0.721569, 0.858824, 0.988235, 1 )
 margin_left = 37.0
 margin_top = 9.0
 margin_right = 144.0
@@ -109,6 +110,7 @@ __meta__ = {
 [node name="Continue" type="Button" parent="Penguwin"]
 pause_mode = 2
 visible = false
+modulate = Color( 0.721569, 0.858824, 0.988235, 1 )
 margin_left = -262.0
 margin_top = 6.0
 margin_right = -147.0
@@ -166,7 +168,7 @@ position = Vector2( 2924.43, 102.029 )
 position = Vector2( -646.581, 659.013 )
 
 [node name="Area2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1890.9, -127.869 )
+position = Vector2( 1907.85, -123.398 )
 
 [node name="Area2D2" parent="." instance=ExtResource( 7 )]
 position = Vector2( -4889.01, 14.6351 )

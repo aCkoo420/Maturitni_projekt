@@ -75,6 +75,7 @@ public class Penguwin : KinematicBody2D
 		smer.x *= rychlostPohybu;
 
 		
+		
 
 		//Skok tucniaka
 
@@ -89,12 +90,22 @@ public class Penguwin : KinematicBody2D
 			skocil = false;
 			smer.y = -silaSkoku;
 		}
-	
-		if(IsOnFloor() && Input.IsActionJustPressed("move_right") || Input.IsActionJustPressed("move_left"))
+		
+		//Zrychleni
+		if(Input.GetActionStrength("move_right") != 0 || Input.GetActionStrength("move_left") != 0)
 		{
-			rychlostPohybu+=5;
-			
+			rychlostPohybu+=1;
 		}
+		else if(IsOnFloor() && Input.GetActionStrength("move_right") == 0 || Input.GetActionStrength("move_left") == 0 )
+		{
+			rychlostPohybu=550;
+		}
+		else
+		{
+			rychlostPohybu+=10;
+		}
+		
+		
 		//Otaceni tucnacka
 		if (smer.x > 0)
 		{
@@ -117,6 +128,7 @@ public class Penguwin : KinematicBody2D
 		{
 			animacePengwina.Play("Skok");
 		}
+		//Pause menu
 		if(Input.IsActionPressed("ui_cancel") )
 		{
 			GetTree().Paused=true;
