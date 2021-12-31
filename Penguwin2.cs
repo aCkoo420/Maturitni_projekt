@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Penguwin : KinematicBody2D
+public class Penguwin2 : KinematicBody2D
 {
 	Vector2 smer;
 	float rychlostPohybu = 550;
@@ -22,7 +22,7 @@ public class Penguwin : KinematicBody2D
 	AnimationPlayer animacePengwina; 
 	public override void _Ready()
 	{
-		scoreText = (Label)GetNode("Label");
+		scoreText = (Label)GetNode("Skore2");
 		scoreText.Text = "0";
 		sprite = (Sprite)GetNode("Sprite");
 		animacePengwina = (AnimationPlayer)GetNode("AnimationPlayer");
@@ -56,7 +56,7 @@ public class Penguwin : KinematicBody2D
 	}
 
 
-	
+
 	
 	
 	public override void _PhysicsProcess(float delta)
@@ -76,7 +76,7 @@ public class Penguwin : KinematicBody2D
 		
 
 		//Pohyb tucnacka
-		smer.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
+		smer.x = Input.GetActionStrength("move_right2") - Input.GetActionStrength("move_left2");
 		smer.x *= rychlostPohybu;
 
 		
@@ -84,24 +84,24 @@ public class Penguwin : KinematicBody2D
 
 		//Skok tucniaka
 
-		if (IsOnFloor() && Input.IsActionJustPressed("jump"))
+		if (IsOnFloor() && Input.IsActionJustPressed("jump2"))
 		{
 			skocil = true;
 			smer.y = -silaSkoku;
 		}
 		else
-		if (skocil && Input.IsActionJustPressed("jump"))
+		if (skocil && Input.IsActionJustPressed("jump2"))
 		{
 			skocil = false;
 			smer.y = -silaSkoku;
 		}
 		
 		//Zrychleni
-		if(Input.GetActionStrength("move_right") != 0 || Input.GetActionStrength("move_left") != 0)
+		if(Input.GetActionStrength("move_right2") != 0 || Input.GetActionStrength("move_left2") != 0)
 		{
 			rychlostPohybu+=1;
 		}
-		else if(IsOnFloor() && Input.GetActionStrength("move_right") == 0 || Input.GetActionStrength("move_left") == 0 )
+		else if(IsOnFloor() && Input.GetActionStrength("move_right2") == 0 || Input.GetActionStrength("move_left2") == 0 )
 		{
 			rychlostPohybu=550;
 		}
@@ -153,7 +153,6 @@ public class Penguwin : KinematicBody2D
 	
 
 }
-
 
 
 
